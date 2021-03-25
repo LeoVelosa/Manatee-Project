@@ -6,7 +6,6 @@ public class Underwater : MonoBehaviour
 {
     //Define variable
     public int underwaterLevel = 7;
-
     //The scene's default fog settings
     private bool defaultFog;
     private Color defaultFogColor;
@@ -29,8 +28,8 @@ public class Underwater : MonoBehaviour
         if (transform.position.y <= underwaterLevel)
         {
             RenderSettings.fog = true;
-            RenderSettings.fogColor = new Color(0, 0.4f, 0.7f, 0.6f);
-            RenderSettings.fogDensity = 0.04f;
+            RenderSettings.fogColor = new Color(0, 0.9f, 0.7f, 0.6f);
+            RenderSettings.fogDensity = 0.01f;
             RenderSettings.skybox = noSkybox;
         }
         else
