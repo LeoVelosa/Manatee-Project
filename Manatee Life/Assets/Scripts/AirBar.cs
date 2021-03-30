@@ -10,7 +10,7 @@ public class AirBar : MonoBehaviour
 
     void Start()
     {
-        airLeft = GameObject.Find("Main Camera").GetComponent<Air>();
+        airLeft = GameObject.Find("MainCamera").GetComponent<Air>();
         AirBarSlider = this.GetComponent<Slider>();
         AirBarSlider.maxValue = airLeft.maxAir;
         AirBarSlider.value = airLeft.currentAir;

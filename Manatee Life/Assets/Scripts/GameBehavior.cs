@@ -13,7 +13,7 @@ public class GameBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        airLeft = GameObject.Find("Main Camera").GetComponent<Air>();
+        airLeft = GameObject.Find("MainCamera").GetComponent<Air>();
     }
 
     // Update is called once per frame
@@ -51,6 +51,12 @@ public class GameBehavior : MonoBehaviour
             GUI.Box(new Rect(Screen.width / 2 - 130, Screen.height / 2, 350, 55), "You did it! You may " +
                 "have survived through our \ngame but imagine doing this every day. Manatees are" +
                 "\nin constant danger and humans are the problem.");
+            Time.timeScale = 0.0f;
+        }
+        if (gameSeconds <= 0 && SceneManager.GetActiveScene().name == "Level 1")
+        {
+            GUI.Box(new Rect(Screen.width / 2 - 130, Screen.height / 2, 350, 55), "You completed Level 1, now loading level 2!");
+            SceneManager.LoadScene(2);
             Time.timeScale = 0.0f;
         }
     }

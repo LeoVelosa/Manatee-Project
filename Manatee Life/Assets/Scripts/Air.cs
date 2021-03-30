@@ -14,7 +14,7 @@ public class Air : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        underWaterScript = GameObject.Find("Main Camera").GetComponent<Underwater>();
+        underWaterScript = GameObject.Find("MainCamera").GetComponent<Underwater>();
         airBar = GameObject.Find("Air Bar").GetComponent<AirBar>();
         currentAir = maxAir;
     }
@@ -30,14 +30,14 @@ public class Air : MonoBehaviour
         }
         else
         {
-            currentAir += Time.deltaTime;
+            if(currentAir <= maxAir)
+            {
+                Debug.Log(currentAir);
 
-            airBar.setAir(currentAir);
-        }
+                currentAir += Time.deltaTime;
 
-        if (currentAir <= 0)
-        {
-
+                airBar.setAir(currentAir);
+            }
         }
     }
 }

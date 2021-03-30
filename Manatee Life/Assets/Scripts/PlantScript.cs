@@ -14,7 +14,7 @@ public class PlantScript : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Player")
+        if (collision.gameObject.name == "MainCamera")
         {
             Destroy(this.transform.gameObject);
             gameManager.foodSeconds = 30.0f;

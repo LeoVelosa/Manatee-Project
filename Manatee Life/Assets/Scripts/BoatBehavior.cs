@@ -6,39 +6,51 @@ public class BoatBehavior : MonoBehaviour
 {
     public Transform patrolRoute;
     public List<Transform> locations;
-    private UnityEngine.AI.NavMeshAgent agent;
+    public Transform currLocation;
+    public GameBehavior gameManager;
 
     void Start()
     {
-        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         InitializePatrolRoute();
-        MoveToNextPatrolLocation();
+        MoveToNextLocation();
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameBehavior>();
     }
 
     void Update()
     {
-        if (agent.remainingDistance < 0.2f && !agent.pathPending)
+        if (this.transform.position == currLocation.position)
         {
-            MoveToNextPatrolLocation();
+            MoveToNextLocation();
+        }
+        else
+        {
+            this.transform.LookAt(currLocation);
+            this.transform.position = Vector3.MoveTowards(this.transform.position, currLocation.position, 5);
         }
     }
 
     void InitializePatrolRoute()
     {
-        Debug.Log("Yes");
         foreach (Transform child in patrolRoute)
         {
             locations.Add(child);
         }
     }
 
-    void MoveToNextPatrolLocation()
+    void MoveToNextLocation()
     {
-        Debug.Log("Ye");
         int lIndex = UnityEngine.Random.Range(0, 4);
-        Debug.Log(lIndex);
         if (locations.Count == 0) return;
-        agent.destination = locations[lIndex].position;
+        currLocation = locations[lIndex];
+        this.transform.position = Vector3.MoveTowards(this.transform.position, currLocation.position, 100);
         //locationIndex = (locationIndex + 1) % locations.Count;
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.name == "MainCamera")
+        {
+            gameManager.lives -= 1;
+        }
     }
 }

@@ -7,19 +7,19 @@ public class Underwater : MonoBehaviour
     //Define variable
     public int underwaterLevel = 7;
     //The scene's default fog settings
-    private bool defaultFog;
-    private Color defaultFogColor;
-    private float defaultFogDensity;
+    //private bool defaultFog;
+    //private Color defaultFogColor;
+    //private float defaultFogDensity;
     private Material defaultSkybox;
     private Material noSkybox;
 
     void Start()
     {
         //Set the background color
-        GetComponent<Camera>().backgroundColor = new Color(0, 0.4f, 0.7f, 1);
-        defaultFog = RenderSettings.fog;
-        defaultFogColor = RenderSettings.fogColor;
-        defaultFogDensity = RenderSettings.fogDensity;
+        GetComponent<Camera>().backgroundColor = new Color(0, 0.5f, 0.7f, 1);
+        //defaultFog = RenderSettings.fog;
+        //defaultFogColor = RenderSettings.fogColor;
+        //defaultFogDensity = RenderSettings.fogDensity;
         defaultSkybox = RenderSettings.skybox;
     }
 
@@ -27,16 +27,16 @@ public class Underwater : MonoBehaviour
     {
         if (transform.position.y <= underwaterLevel)
         {
-            RenderSettings.fog = true;
-            RenderSettings.fogColor = new Color(0, 0.9f, 0.7f, 0.6f);
-            RenderSettings.fogDensity = 0.01f;
+            //RenderSettings.fog = true;
+           // RenderSettings.fogColor = new Color(0, 0.9f, 0.7f, 0.6f);
+            //RenderSettings.fogDensity = 0.01f;
             RenderSettings.skybox = noSkybox;
         }
         else
         {
-            RenderSettings.fog = defaultFog;
-            RenderSettings.fogColor = defaultFogColor;
-            RenderSettings.fogDensity = defaultFogDensity;
+            //RenderSettings.fog = defaultFog;
+            //RenderSettings.fogColor = defaultFogColor;
+            //RenderSettings.fogDensity = defaultFogDensity;
             RenderSettings.skybox = defaultSkybox;
         }
     }
